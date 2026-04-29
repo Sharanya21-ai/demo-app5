@@ -7,7 +7,6 @@ pipeline {
     }
 
     stages {
-
         stage('Checkout') {
             steps {
                 git branch: 'main', url:'https://github.com/Sharanya21-ai/demo-app5.git',
@@ -31,18 +30,16 @@ pipeline {
             steps {
                 sh 'mvn package'
             }
-        
-        
         }
+
         stage('Run Application') {
             steps {
                 sh 'mvn exec:java -Dexec.mainClass="com.example.app.App"'
             }
         }
-    }
-}
-post {
+    } // End of stages
 
+    post {
         success {
             emailext (
                 subject: "SUCCESS: ${JOB_NAME} #${BUILD_NUMBER}",
@@ -58,5 +55,5 @@ post {
                 to: "naveenmys64@gmail.com"
             )
         }
-    }
-}
+    } // End of post
+} // End of pipeline (This was missing or misplaced in your original)
